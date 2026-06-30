@@ -1,0 +1,150 @@
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS — LIGHT
+   ═══════════════════════════════════════════ */
+:root {
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Surfaces */
+    --bg: #f8f8f8;
+    --bg-subtle: #f1f1f1;
+    --surface: #ffffff;
+    --surface-hover: #fafafa;
+    --surface-alt: #f6f6f6;
+    --surface-raised: #ffffff;
+
+    /* Borders */
+    --border: #e4e4e7;
+    --border-subtle: #ebebee;
+    --border-focus: rgba(16, 163, 127, 0.45);
+
+    /* Text */
+    --text-1: #18181b;
+    --text-2: #52525b;
+    --text-3: #a1a1aa;
+    --text-inv: #ffffff;
+
+    /* Accent — muted emerald */
+    --accent: #10a37f;
+    --accent-hover: #0e9270;
+    --accent-subtle: rgba(16, 163, 127, 0.08);
+    --accent-ring: rgba(16, 163, 127, 0.22);
+    --accent-text: #0c8568;
+
+    /* Semantic */
+    --green: #16a34a;
+    --green-bg: rgba(22, 163, 74, 0.08);
+    --green-text: #15803d;
+    --yellow: #ca8a04;
+    --yellow-bg: rgba(202, 138, 4, 0.08);
+    --yellow-text: #a16207;
+    --red: #dc2626;
+    --red-bg: rgba(220, 38, 38, 0.06);
+    --red-text: #b91c1c;
+    --red-border: rgba(220, 38, 38, 0.18);
+
+    /* Shadows — layered for depth */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 0 0 1px var(--border), 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+    --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.08), 0 1px 1px rgba(0, 0, 0, 0.04);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    /* Transitions */
+    --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --dur: 200ms;
+
+    /* Glow behind card */
+    --glow: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(16, 163, 127, 0.04) 0%, transparent 70%);
+}
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS — DARK
+   ═══════════════════════════════════════════ */
+[data-theme="dark"] {
+    --bg: #0e0e10;
+    --bg-subtle: #141416;
+    --surface: #1a1a1e;
+    --surface-hover: #1f1f24;
+    --surface-alt: #16161a;
+    --surface-raised: #1e1e23;
+
+    --border: #2a2a2f;
+    --border-subtle: #232328;
+    --border-focus: rgba(16, 163, 127, 0.5);
+
+    --text-1: #ececef;
+    --text-2: #9898a0;
+    --text-3: #5c5c66;
+    --text-inv: #0e0e10;
+
+    --accent: #1fbc8e;
+    --accent-hover: #24d4a0;
+    --accent-subtle: rgba(31, 188, 142, 0.1);
+    --accent-ring: rgba(31, 188, 142, 0.25);
+    --accent-text: #34d9a4;
+
+    --green: #22c55e;
+    --green-bg: rgba(34, 197, 94, 0.1);
+    --green-text: #4ade80;
+    --yellow: #eab308;
+    --yellow-bg: rgba(234, 179, 8, 0.1);
+    --yellow-text: #facc15;
+    --red: #ef4444;
+    --red-bg: rgba(239, 68, 68, 0.1);
+    --red-text: #f87171;
+    --red-border: rgba(239, 68, 68, 0.2);
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+    --shadow-card: 0 0 0 1px var(--border), 0 2px 8px rgba(0, 0, 0, 0.25), 0 12px 40px rgba(0, 0, 0, 0.3);
+    --shadow-btn: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    --glow: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(31, 188, 142, 0.06) 0%, transparent 70%);
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, select, .clickable {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -webkit-touch-callout: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-1);
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}

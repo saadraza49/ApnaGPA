@@ -1,0 +1,104 @@
+/* ═══════════════════════════════════════════
+   BUTTON ANIMATIONS (RIPPLE & HOVER)
+   ═══════════════════════════════════════════ */
+button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+button:not(.btn-icon):not(.mobile-menu-btn):not(.btn-close-menu):hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(16,185,129,0.25);
+}
+
+button:not(.btn-icon):not(.mobile-menu-btn):not(.btn-close-menu):active {
+    transform: translateY(0) scale(0.97);
+    transition: transform 80ms ease;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-anim 600ms linear;
+    background-color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+}
+[data-theme="light"] .btn-dashed .ripple,
+[data-theme="light"] .btn-reset-outline .ripple,
+[data-theme="light"] .btn-ghost .ripple,
+[data-theme="light"] .btn-text .ripple,
+[data-theme="light"] .btn-remove .ripple {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+[data-theme="dark"] .btn-dashed .ripple,
+[data-theme="dark"] .btn-reset-outline .ripple,
+[data-theme="dark"] .btn-ghost .ripple,
+[data-theme="dark"] .btn-text .ripple,
+[data-theme="dark"] .btn-remove .ripple {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes ripple-anim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   ROW ANIMATIONS
+   ═══════════════════════════════════════════ */
+.course-row {
+    animation: rowEnter 250ms var(--ease) both;
+}
+
+@keyframes rowEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.course-row.removing {
+    animation: rowExit 200ms var(--ease) forwards;
+}
+
+@keyframes rowExit {
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+        height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        overflow: hidden;
+    }
+}
+
+/* ═══════════════════════════════════════════
+   SHAKE / ERROR ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
+.shake-error {
+    animation: shake 400ms ease-in-out;
+    border-color: var(--red) !important;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Dropdown specific transitions are handled in components.css since they are heavily tied to visibility/opacity rules, 
+   but spin animation goes here */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
