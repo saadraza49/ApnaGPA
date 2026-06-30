@@ -105,18 +105,23 @@ function initExport() {
             statsLabels[0].textContent = 'Semesters';
             thElements[1].textContent = 'Semester';
             thElements[3].textContent = 'GPA';
+            
+            // Hide credits and points columns/stats for CGPA
+            const expStats = exportCard.querySelectorAll('.stat');
+            if (expStats.length >= 3) {
+                expStats[1].style.display = 'none';
+                expStats[2].style.display = 'none';
+            }
+            thElements[2].style.display = 'none'; // Cr.
+            thElements[5].style.display = 'none'; // Pts
 
             document.getElementById('exp-date-val').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             document.getElementById('exp-gpa-num').textContent = document.getElementById('cgpa-val').textContent.split('/')[0];
             document.getElementById('exp-grade-letter').textContent = document.getElementById('cgpa-grade-pill').textContent;
 
             document.getElementById('exp-stat-courses').textContent = document.getElementById('cgpa-s-semesters').textContent;
-            document.getElementById('exp-stat-credits').textContent = document.getElementById('cgpa-s-credits').textContent;
             
             const cgpaData = window.validateCgpaData ? window.validateCgpaData() : null;
-            let totalPts = 0;
-            if(cgpaData) cgpaData.forEach(d => totalPts += (d.gpa * d.ch));
-            document.getElementById('exp-stat-gp').textContent = totalPts.toFixed(2);
 
             const expTbody = document.getElementById('exp-tbody');
             expTbody.innerHTML = '';
@@ -124,15 +129,14 @@ function initExport() {
             if (cgpaData) {
                 cgpaData.forEach((d, index) => {
                     const tr = document.createElement('tr');
-                    const pts = d.gpa * d.ch;
                     const res = window.letterGrade(d.gpa);
                     tr.innerHTML = `
                         <td>${index + 1}</td>
                         <td>${window.esc(d.name)}</td>
-                        <td class="num">${d.ch}</td>
+                        <td style="display:none;" class="num">-</td>
                         <td class="num">${d.gpa.toFixed(2)}</td>
                         <td>${res}</td>
-                        <td class="num">${pts.toFixed(2)}</td>
+                        <td style="display:none;" class="num">-</td>
                     `;
                     expTbody.appendChild(tr);
                 });
@@ -163,6 +167,12 @@ function initExport() {
                     statsLabels[0].textContent = origStatCourses;
                     thElements[1].textContent = origThSubject;
                     thElements[3].textContent = origThMarks;
+                    if (expStats.length >= 3) {
+                        expStats[1].style.display = '';
+                        expStats[2].style.display = '';
+                    }
+                    thElements[2].style.display = '';
+                    thElements[5].style.display = '';
                 }
             }, 100);
         });

@@ -19,25 +19,20 @@ function initCGPACalculator() {
             <div class="field">
                 <input type="number" class="control" id="cgpa-gpa${id}" placeholder="3.50" min="0" max="4" step="0.01">
             </div>
-            <div class="field">
-                <input type="number" class="control" id="cgpa-ch${id}" placeholder="18" min="1" max="50" step="1">
-            </div>
             <button class="btn-remove" type="button" title="Remove" data-rm="${id}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
         `;
         // For desktop, enforce grid columns directly on row since course-row uses 4 columns but original is different
-        d.style.gridTemplateColumns = window.innerWidth > 480 ? '1fr 110px 120px 44px' : '';
+        d.style.gridTemplateColumns = window.innerWidth > 480 ? '1fr 110px 44px' : '';
 
         $cgpaSemesters.appendChild(d);
 
         const nInput = document.getElementById('cgpa-n' + id);
         const gpaInput = document.getElementById('cgpa-gpa' + id);
-        const chInput = document.getElementById('cgpa-ch' + id);
 
         nInput.addEventListener('input', calculateCgpa);
         gpaInput.addEventListener('input', calculateCgpa);
-        chInput.addEventListener('input', calculateCgpa);
     }
 
     function removeCgpaRow(id) {
@@ -62,7 +57,6 @@ function initCGPACalculator() {
             const name = nI.value.trim() || `Semester ${id}`;
             
             let gpa = parseFloat(gpaI.value);
-            let ch = parseFloat(chI.value);
 
             if (gpaI.value.trim() === '') {
                 window.triggerShake(gpaI);
@@ -72,15 +66,7 @@ function initCGPACalculator() {
                 ok = false;
             }
 
-            if (chI.value.trim() === '') {
-                window.triggerShake(chI);
-                ok = false;
-            } else if (isNaN(ch) || ch <= 0) {
-                window.triggerShake(chI);
-                ok = false;
-            }
-
-            data.push({ name, gpa, ch, id });
+            data.push({ name, gpa, id });
         });
 
         if (!ok) return null;
@@ -91,28 +77,23 @@ function initCGPACalculator() {
         const data = validateCgpa();
         if (!data) return;
 
-        let totalPoints = 0;
-        let totalCredits = 0;
+        let totalGpa = 0;
 
         const tbody = document.getElementById('cgpa-tbody');
         tbody.innerHTML = '';
 
         data.forEach((d, i) => {
-            let pts = d.gpa * d.ch;
-            totalPoints += pts;
-            totalCredits += d.ch;
+            totalGpa += d.gpa;
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
                 <td>${window.esc(d.name)}</td>
-                <td class="num">${d.ch}</td>
                 <td class="num">${d.gpa.toFixed(2)}</td>
-                <td class="num">${pts.toFixed(2)}</td>
             `;
             tbody.appendChild(tr);
         });
 
-        let cgpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
+        let cgpa = data.length > 0 ? totalGpa / data.length : 0;
         cgpa = Math.round(cgpa * 100) / 100;
         
         const lg = window.letterGrade(cgpa);
@@ -126,8 +107,6 @@ function initCGPACalculator() {
         pillEl.className = 'grade-pill pill-' + t;
 
         document.getElementById('cgpa-s-semesters').textContent = data.length;
-        document.getElementById('cgpa-s-credits').textContent = totalCredits;
-        document.getElementById('cgpa-header-total-credits').textContent = `Total Credits: ${totalCredits}`;
     }
 
     function resetCgpaAll() {

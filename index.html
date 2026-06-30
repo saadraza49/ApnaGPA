@@ -189,10 +189,9 @@
                         <span class="card-label">Semesters</span>
                     </div>
 
-                    <div class="course-list-header" style="grid-template-columns: 1fr 110px 120px 44px;">
+                    <div class="course-list-header" style="grid-template-columns: 1fr 110px 44px;">
                         <div>Semester Name</div>
                         <div>GPA</div>
-                        <div>Credit Hrs</div>
                         <div></div>
                     </div>
 
@@ -228,13 +227,9 @@
                     </div>
 
                     <div class="stats-row">
-                        <div class="stat" style="grid-column: span 1.5;">
+                        <div class="stat" style="grid-column: span 3;">
                             <div class="stat-label">Semesters</div>
                             <div class="stat-value" id="cgpa-s-semesters">0</div>
-                        </div>
-                        <div class="stat" style="grid-column: span 1.5;">
-                            <div class="stat-label">Credit hours</div>
-                            <div class="stat-value" id="cgpa-s-credits">0</div>
                         </div>
                     </div>
                 </div>
@@ -243,16 +238,13 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <span class="card-label">Calculation Breakdown</span>
-                        <span class="card-label" id="cgpa-header-total-credits" style="font-weight: 500; font-size: 0.75rem; color: var(--text-3); text-transform: none;">Total Credits: 0</span>
                     </div>
                     <div class="breakdown-wrap">
                         <table class="breakdown" id="cgpa-breakdown-table">
                             <thead>
                                 <tr>
                                     <th>Semester</th>
-                                    <th class="num">Cr.</th>
                                     <th class="num">GPA</th>
-                                    <th class="num">Pts</th>
                                 </tr>
                             </thead>
                             <tbody id="cgpa-tbody"></tbody>
