@@ -344,6 +344,10 @@
             overflow: hidden;
         }
 
+        .card.overflow-visible {
+            overflow: visible;
+        }
+
         .card+.card {
             margin-top: 24px;
         }
@@ -463,6 +467,11 @@
 
         .course-row:last-child {
             border-bottom: none;
+        }
+
+        .course-row.row-z-top {
+            position: relative;
+            z-index: 100;
         }
 
         .course-row:hover {
@@ -601,6 +610,7 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
+            padding: 4px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.12);
             z-index: 100;
             opacity: 0;
@@ -615,20 +625,37 @@
             transform: translateY(0);
         }
         .custom-select-option {
-            padding: 10px 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
             font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2px;
             color: var(--text-2);
             cursor: pointer;
             transition: background var(--dur), color var(--dur);
         }
-        .custom-select-option:hover, .custom-select-option.focused {
+        .custom-select-option:last-child {
+            margin-bottom: 0;
+        }
+        .custom-select-option:hover:not(.selected), .custom-select-option.focused:not(.selected) {
             background: var(--surface-hover);
             color: var(--text-1);
         }
         .custom-select-option.selected {
-            background: var(--accent-subtle);
-            color: var(--accent-text);
+            background: var(--accent);
+            color: #ffffff;
             font-weight: 600;
+        }
+        .check-icon {
+            opacity: 0;
+            flex-shrink: 0;
+            transition: opacity var(--dur);
+        }
+        .custom-select-option.selected .check-icon {
+            opacity: 1;
         }
 
         .control:disabled {
@@ -2041,8 +2068,8 @@
     <!-- Hidden Export Card -->
     <div id="export-card">
         <div class="exp-header">
-            <div class="exp-brand">
-                <img src="ApnaGPA black.png" alt="ApnaGPA" style="height: 120px; width: auto; position: relative; left: -20px;">
+            <div class="exp-brand" style="position: relative; height: 48px; width: 300px;">
+                <img src="ApnaGPA black.png" alt="ApnaGPA" style="max-height: 120px; width: auto; position: absolute; left: -16px; top: 50%; transform: translateY(-50%);">
             </div>
             <div class="exp-date" id="exp-date-val"></div>
         </div>
@@ -2253,16 +2280,31 @@
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </div>
                 <div class="custom-select-options">
-                    <div class="custom-select-option" data-value="0">0 Hour</div>
-                    <div class="custom-select-option" data-value="1">1 Hour</div>
-                    <div class="custom-select-option" data-value="2">2 Hours</div>
-                    <div class="custom-select-option selected" data-value="3">3 Hours</div>
-                    <div class="custom-select-option" data-value="4">4 Hours</div>
+                    <div class="custom-select-option" data-value="0">
+                        0 Hour
+                        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="custom-select-option" data-value="1">
+                        1 Hour
+                        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="custom-select-option" data-value="2">
+                        2 Hours
+                        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="custom-select-option selected" data-value="3">
+                        3 Hours
+                        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="custom-select-option" data-value="4">
+                        4 Hours
+                        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="field">
-            <input type="number" class="control" id="m${id}" placeholder="60" min="0" max="60" step="any">
+            <input type="number" class="control" id="m${id}" placeholder="60" value="0" min="0" max="60" step="any">
         </div>
         <button class="btn-remove" type="button" title="Remove" data-rm="${id}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -2283,12 +2325,26 @@
 
             function closeCustomSelect() {
                 csContainer.classList.remove('open');
+                const card = csContainer.closest('.card');
+                if (card) card.classList.remove('overflow-visible');
+                const row = csContainer.closest('.course-row');
+                if (row) row.classList.remove('row-z-top');
             }
 
             function openCustomSelect() {
                 // Close all others first
-                document.querySelectorAll('.custom-select-container').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.custom-select-container').forEach(c => {
+                    c.classList.remove('open');
+                    const cCard = c.closest('.card');
+                    if (cCard) cCard.classList.remove('overflow-visible');
+                    const cRow = c.closest('.course-row');
+                    if (cRow) cRow.classList.remove('row-z-top');
+                });
                 csContainer.classList.add('open');
+                const card = csContainer.closest('.card');
+                if (card) card.classList.add('overflow-visible');
+                const row = csContainer.closest('.course-row');
+                if (row) row.classList.add('row-z-top');
             }
 
             csTrigger.addEventListener('click', (e) => {
@@ -2343,7 +2399,7 @@
                 opt.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const val = opt.getAttribute('data-value');
-                    const text = opt.textContent;
+                    const text = opt.textContent.trim();
                     
                     // Update visual state
                     csOptions.forEach(o => o.classList.remove('selected', 'focused'));
@@ -2388,6 +2444,17 @@
                 calculate();
             });
 
+            mInput.addEventListener('focus', () => {
+                if (mInput.value === '0') mInput.value = '';
+            });
+
+            mInput.addEventListener('blur', () => {
+                if (mInput.value === '') {
+                    mInput.value = '0';
+                    calculate();
+                }
+            });
+
             mInput.addEventListener('input', () => {
                 if (mInput.value !== '') {
                     const ch = parseInt(chSelect.value, 10);
@@ -2414,11 +2481,7 @@
         }
 
         function triggerShake(el) {
-            if(!el) return;
-            el.classList.remove('shake-error');
-            void el.offsetWidth; // trigger reflow
-            el.classList.add('shake-error');
-            el.addEventListener('animationend', () => el.classList.remove('shake-error'), { once: true });
+            // Vibration removed as per user request
         }
 
         function validate() {
