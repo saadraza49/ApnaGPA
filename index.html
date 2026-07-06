@@ -25,8 +25,8 @@
     <nav class="topbar">
         <div class="topbar-container">
             <a class="topbar-brand" href="#">
-                <img src="ApnaGPA black.png" alt="ApnaGPA" class="brand-logo logo-light">
-                <img src="ApnaGPA white.png" alt="ApnaGPA" class="brand-logo logo-dark">
+                <img src="ApnaGPA%20black.png" alt="ApnaGPA" class="brand-logo logo-light">
+                <img src="ApnaGPA%20white.png" alt="ApnaGPA" class="brand-logo logo-dark">
             </a>
             <div class="nav-overlay" id="nav-overlay"></div>
             <div class="topbar-nav" id="topbar-nav">
@@ -113,7 +113,7 @@
             <!-- Results -->
             <section class="calc-right results" id="results">
                 <!-- GPA Card -->
-                <div class="card" id="gpa-card">
+                <div class="card" id="gpa-card" aria-live="polite">
                     <div class="gpa-hero">
                         <div class="gpa-hero-label">Semester GPA</div>
                         <div class="gpa-hero-value" id="gpa-val">0.00<span
@@ -219,7 +219,7 @@
             <!-- Results -->
             <section class="calc-right results" id="cgpa-results">
                 <!-- GPA Card -->
-                <div class="card" id="cgpa-gpa-card">
+                <div class="card" id="cgpa-gpa-card" aria-live="polite">
                     <div class="gpa-hero">
                         <div class="gpa-hero-label">Cumulative GPA</div>
                         <div class="gpa-hero-value" id="cgpa-val">0.00<span style="font-size: 1.5rem; color: var(--text-3); font-weight: 500;">/4.0</span></div>
@@ -310,8 +310,8 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a class="footer-brand-logo" href="#">
-                    <img src="ApnaGPA black.png" alt="ApnaGPA" class="logo-light">
-                    <img src="ApnaGPA white.png" alt="ApnaGPA" class="logo-dark">
+                    <img src="ApnaGPA%20black.png" alt="ApnaGPA" class="logo-light">
+                    <img src="ApnaGPA%20white.png" alt="ApnaGPA" class="logo-dark">
                 </a>
                 <p class="footer-brand-desc">ApnaGPA was built to help GCUF students calculate their GPA quickly,
                     accurately, and effortlessly.</p>
@@ -362,8 +362,8 @@
     <!-- Hidden Export Card -->
     <div id="export-card">
         <div class="exp-header">
-            <div class="exp-brand" style="position: relative; height: 48px; width: 300px;">
-                <img src="ApnaGPA black.png" alt="ApnaGPA" style="max-height: 120px; width: auto; position: absolute; left: -16px; top: 50%; transform: translateY(-50%);">
+            <div class="exp-brand" style="position: relative; height: 48px; width: 300px; display: flex; align-items: center;">
+                <img src="ApnaGPA%20black.png" alt="ApnaGPA" style="max-height: 120px; width: auto; margin-left: -16px;">
             </div>
             <div class="exp-date" id="exp-date-val"></div>
         </div>
@@ -415,7 +415,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/gpa-calculator.js"></script>
     <script src="js/cgpa-calculator.js"></script>
-    <script src="js/export.js"></script>
+    <script src="js/export.js?v=2"></script>
     <script src="js/main.js"></script>
 </body>
 

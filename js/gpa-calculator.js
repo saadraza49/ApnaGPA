@@ -17,7 +17,7 @@ function initGPACalculator() {
 
         d.innerHTML = `
     <div class="field">
-        <input type="text" class="control" id="n${id}" placeholder="e.g. Mathematics" autocomplete="off">
+        <input type="text" class="control" id="n${id}" placeholder="e.g. Mathematics" autocomplete="off" aria-label="Course Name">
     </div>
     <div class="field">
         <select class="control" id="c${id}" style="display: none;">
@@ -28,28 +28,28 @@ function initGPACalculator() {
             <option value="4">4 Hours</option>
         </select>
         <div class="custom-select-container" id="cs${id}">
-            <div class="control custom-select-trigger" id="cst${id}" tabindex="0">
+            <div class="control custom-select-trigger" id="cst${id}" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Select Credit Hours">
                 <span class="custom-select-label" id="csl${id}">3 Hours</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </div>
-            <div class="custom-select-options">
-                <div class="custom-select-option" data-value="0">
+            <div class="custom-select-options" role="listbox" aria-label="Credit Hours">
+                <div class="custom-select-option" data-value="0" role="option" aria-selected="false">
                     0 Hour
                     <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="custom-select-option" data-value="1">
+                <div class="custom-select-option" data-value="1" role="option" aria-selected="false">
                     1 Hour
                     <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="custom-select-option" data-value="2">
+                <div class="custom-select-option" data-value="2" role="option" aria-selected="false">
                     2 Hours
                     <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="custom-select-option selected" data-value="3">
+                <div class="custom-select-option selected" data-value="3" role="option" aria-selected="true">
                     3 Hours
                     <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="custom-select-option" data-value="4">
+                <div class="custom-select-option" data-value="4" role="option" aria-selected="false">
                     4 Hours
                     <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
@@ -57,9 +57,9 @@ function initGPACalculator() {
         </div>
     </div>
     <div class="field">
-        <input type="number" class="control" id="m${id}" placeholder="60" value="0" min="0" max="60" step="any">
+        <input type="number" class="control" id="m${id}" placeholder="60" value="0" min="0" max="60" step="any" aria-label="Marks">
     </div>
-    <button class="btn-remove" type="button" title="Remove" data-rm="${id}">
+    <button class="btn-remove" type="button" aria-label="Remove Course" title="Remove" data-rm="${id}">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
         `;
@@ -92,8 +92,13 @@ function initGPACalculator() {
 
                 if (mInput.value !== '') {
                     let val = parseFloat(mInput.value);
-                    if (val > maxM) mInput.value = maxM;
-                    else if (val < 0) mInput.value = 0;
+                    if (val > maxM) {
+                        mInput.value = maxM;
+                        if (window.triggerShake) window.triggerShake(mInput);
+                    } else if (val < 0) {
+                        mInput.value = 0;
+                        if (window.triggerShake) window.triggerShake(mInput);
+                    }
                 }
             }
             calculate();
@@ -118,8 +123,10 @@ function initGPACalculator() {
                     const maxM = maxMarks(ch);
                     if (val > maxM) {
                         mInput.value = maxM;
+                        if (window.triggerShake) window.triggerShake(mInput);
                     } else if (val < 0) {
                         mInput.value = 0;
+                        if (window.triggerShake) window.triggerShake(mInput);
                     }
                 }
             }
@@ -243,13 +250,14 @@ function initGPACalculator() {
             const tr = document.createElement('tr');
             if (r.isFail) tr.classList.add('row-fail');
             if (r.isAudit) tr.style.opacity = '0.5';
+            const nameContent = window.esc(r.name) || `<span class="muted">Course ${r.i}</span>`;
             tr.innerHTML = `
-        <td>${window.esc(r.name) || `<span class="muted">Course ${r.i}</span>`}${r.isFail ? '<span class="badge-fail">Fail</span>' : ''}${r.isAudit ? '<span style="margin-left:8px;font-size:.6875rem;color:var(--text-3)">Audit</span>' : ''}</td>
-        <td class="num">${r.ch}</td>
-        <td class="num">${r.isAudit ? '-' : r.mk}</td>
-        <td>${r.isAudit ? '-' : r.grade}</td>
-        <td class="num">${r.isAudit ? 'N/A' : r.gp.toFixed(2)}</td>
-    `;
+                <td title="${window.esc(r.name)}">${nameContent}${r.isFail ? '<span class="badge-fail">Fail</span>' : ''}${r.isAudit ? '<span style="margin-left:8px;font-size:.6875rem;color:var(--text-3)">Audit</span>' : ''}</td>
+                <td class="num">${r.ch}</td>
+                <td class="num">${r.isAudit ? '-' : r.mk}</td>
+                <td>${r.isAudit ? '-' : r.grade}</td>
+                <td class="num">${r.isAudit ? 'N/A' : r.gp.toFixed(2)}</td>
+            `;
             tbody.appendChild(tr);
         });
     }

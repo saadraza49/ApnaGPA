@@ -14,12 +14,12 @@ function initCGPACalculator() {
 
         d.innerHTML = `
             <div class="field">
-                <input type="text" class="control" id="cgpa-n${id}" placeholder="e.g. Semester ${id}" autocomplete="off">
+                <input type="text" class="control" id="cgpa-n${id}" placeholder="e.g. Semester ${id}" autocomplete="off" aria-label="Semester Name">
             </div>
             <div class="field">
-                <input type="number" class="control" id="cgpa-gpa${id}" placeholder="3.50" min="0" max="4" step="0.01">
+                <input type="number" class="control" id="cgpa-gpa${id}" placeholder="3.50" min="0" max="4" step="0.01" aria-label="GPA">
             </div>
-            <button class="btn-remove" type="button" title="Remove" data-rm="${id}">
+            <button class="btn-remove" type="button" aria-label="Remove Semester" title="Remove" data-rm="${id}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
         `;
@@ -87,7 +87,7 @@ function initCGPACalculator() {
 
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${window.esc(d.name)}</td>
+                <td title="${window.esc(d.name)}">${window.esc(d.name)}</td>
                 <td class="num">${d.gpa.toFixed(2)}</td>
             `;
             tbody.appendChild(tr);

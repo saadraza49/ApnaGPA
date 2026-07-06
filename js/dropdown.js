@@ -47,19 +47,21 @@ function initCustomDropdown(id) {
     });
 
     csTrigger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            if (!csContainer.classList.contains('open')) openCustomSelect();
-            // Focus the container to allow further arrow nav, though focus stays on trigger
-        } else if (e.key === 'Escape') {
+        if (e.key === 'Escape') {
             closeCustomSelect();
+            return;
         }
-    });
 
-    // Keyboard navigation within options
-    csTrigger.addEventListener('keydown', (e) => {
-        if (!csContainer.classList.contains('open')) return;
-        
+        const isOpen = csContainer.classList.contains('open');
+
+        if (!isOpen) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                openCustomSelect();
+            }
+            return;
+        }
+
         const optsArray = Array.from(csOptions);
         let currentIndex = optsArray.findIndex(opt => opt.classList.contains('focused'));
         if (currentIndex === -1) currentIndex = optsArray.findIndex(opt => opt.classList.contains('selected'));
@@ -75,7 +77,7 @@ function initCustomDropdown(id) {
             optsArray.forEach(o => o.classList.remove('focused'));
             let prev = (currentIndex - 1 + optsArray.length) % optsArray.length;
             optsArray[prev].classList.add('focused');
-        } else if (e.key === 'Enter') {
+        } else if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             let activeOpt = optsArray.find(o => o.classList.contains('focused')) || optsArray[currentIndex];
             if (activeOpt) {

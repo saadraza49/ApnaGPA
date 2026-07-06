@@ -107,10 +107,12 @@ function initExport() {
             thElements[3].textContent = 'GPA';
             
             // Hide credits and points columns/stats for CGPA
-            const expStats = exportCard.querySelectorAll('.stat');
+            const statsContainer = exportCard.querySelector('.exp-stats');
+            const expStats = statsContainer.children;
             if (expStats.length >= 3) {
                 expStats[1].style.display = 'none';
                 expStats[2].style.display = 'none';
+                statsContainer.style.gridTemplateColumns = '1fr';
             }
             thElements[2].style.display = 'none'; // Cr.
             thElements[5].style.display = 'none'; // Pts
@@ -170,6 +172,7 @@ function initExport() {
                     if (expStats.length >= 3) {
                         expStats[1].style.display = '';
                         expStats[2].style.display = '';
+                        statsContainer.style.gridTemplateColumns = '';
                     }
                     thElements[2].style.display = '';
                     thElements[5].style.display = '';

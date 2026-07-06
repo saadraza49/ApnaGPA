@@ -5,109 +5,112 @@
     --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Surfaces */
-    --bg: #f8f8f8;
-    --bg-subtle: #f1f1f1;
+    --bg: #fdfdfd;
+    --bg-subtle: #f4f4f5;
     --surface: #ffffff;
-    --surface-hover: #fafafa;
-    --surface-alt: #f6f6f6;
+    --surface-hover: #f9fafb;
+    --surface-alt: #f3f4f6;
     --surface-raised: #ffffff;
 
     /* Borders */
-    --border: #e4e4e7;
-    --border-subtle: #ebebee;
+    --border: #e5e7eb;
+    --border-subtle: #f3f4f6;
     --border-focus: rgba(16, 163, 127, 0.45);
 
     /* Text */
-    --text-1: #18181b;
-    --text-2: #52525b;
-    --text-3: #a1a1aa;
+    --text-1: #111827;
+    --text-2: #4b5563;
+    --text-3: #9ca3af;
     --text-inv: #ffffff;
 
-    /* Accent — muted emerald */
+    /* Accent — emerald */
     --accent: #10a37f;
     --accent-hover: #0e9270;
     --accent-subtle: rgba(16, 163, 127, 0.08);
-    --accent-ring: rgba(16, 163, 127, 0.22);
+    --accent-ring: rgba(16, 163, 127, 0.25);
     --accent-text: #0c8568;
 
     /* Semantic */
-    --green: #16a34a;
-    --green-bg: rgba(22, 163, 74, 0.08);
-    --green-text: #15803d;
-    --yellow: #ca8a04;
-    --yellow-bg: rgba(202, 138, 4, 0.08);
-    --yellow-text: #a16207;
-    --red: #dc2626;
-    --red-bg: rgba(220, 38, 38, 0.06);
+    --green: #10b981;
+    --green-bg: rgba(16, 185, 129, 0.1);
+    --green-text: #047857;
+    --yellow: #f59e0b;
+    --yellow-bg: rgba(245, 158, 11, 0.1);
+    --yellow-text: #b45309;
+    --red: #ef4444;
+    --red-bg: rgba(239, 68, 68, 0.08);
     --red-text: #b91c1c;
-    --red-border: rgba(220, 38, 38, 0.18);
+    --red-border: rgba(239, 68, 68, 0.2);
 
-    /* Shadows — layered for depth */
-    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 0 0 1px var(--border), 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
-    --shadow-btn: 0 1px 2px rgba(0, 0, 0, 0.08), 0 1px 1px rgba(0, 0, 0, 0.04);
+    /* Shadows — Premium soft shadows */
+    --shadow-xs: 0 1px 2px rgba(17, 24, 39, 0.03);
+    --shadow-sm: 0 2px 4px rgba(17, 24, 39, 0.04), 0 1px 2px rgba(17, 24, 39, 0.02);
+    --shadow-md: 0 8px 16px -4px rgba(17, 24, 39, 0.06), 0 4px 6px -2px rgba(17, 24, 39, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(17, 24, 39, 0.08), 0 10px 10px -5px rgba(17, 24, 39, 0.04);
+    --shadow-card: 0 0 0 1px rgba(17, 24, 39, 0.04), 0 4px 6px -1px rgba(17, 24, 39, 0.04), 0 12px 32px rgba(17, 24, 39, 0.08);
+    --shadow-btn: 0 2px 4px rgba(16, 163, 127, 0.15), 0 1px 2px rgba(17, 24, 39, 0.05);
 
     /* Radii */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    /* Spacing */
+    --space-card: clamp(20px, 4vw, 32px);
 
     /* Transitions */
-    --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-    --dur: 200ms;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --dur: 250ms;
 
     /* Glow behind card */
-    --glow: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(16, 163, 127, 0.04) 0%, transparent 70%);
+    --glow: radial-gradient(circle 600px at 50% 10%, rgba(16, 163, 127, 0.05) 0%, transparent 80%);
 }
 
 /* ═══════════════════════════════════════════
    DESIGN TOKENS — DARK
    ═══════════════════════════════════════════ */
 [data-theme="dark"] {
-    --bg: #0e0e10;
-    --bg-subtle: #141416;
-    --surface: #1a1a1e;
-    --surface-hover: #1f1f24;
-    --surface-alt: #16161a;
-    --surface-raised: #1e1e23;
+    --bg: #030712;
+    --bg-subtle: #111827;
+    --surface: #1f2937;
+    --surface-hover: #374151;
+    --surface-alt: #111827;
+    --surface-raised: #374151;
 
-    --border: #2a2a2f;
-    --border-subtle: #232328;
-    --border-focus: rgba(16, 163, 127, 0.5);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border-focus: rgba(31, 188, 142, 0.5);
 
-    --text-1: #ececef;
-    --text-2: #9898a0;
-    --text-3: #5c5c66;
-    --text-inv: #0e0e10;
+    --text-1: #f9fafb;
+    --text-2: #9ca3af;
+    --text-3: #6b7280;
+    --text-inv: #ffffff;
 
     --accent: #1fbc8e;
     --accent-hover: #24d4a0;
-    --accent-subtle: rgba(31, 188, 142, 0.1);
-    --accent-ring: rgba(31, 188, 142, 0.25);
+    --accent-subtle: rgba(31, 188, 142, 0.15);
+    --accent-ring: rgba(31, 188, 142, 0.3);
     --accent-text: #34d9a4;
 
-    --green: #22c55e;
-    --green-bg: rgba(34, 197, 94, 0.1);
-    --green-text: #4ade80;
-    --yellow: #eab308;
-    --yellow-bg: rgba(234, 179, 8, 0.1);
-    --yellow-text: #facc15;
+    --green: #10b981;
+    --green-bg: rgba(16, 185, 129, 0.15);
+    --green-text: #34d399;
+    --yellow: #f59e0b;
+    --yellow-bg: rgba(245, 158, 11, 0.15);
+    --yellow-text: #fbbf24;
     --red: #ef4444;
-    --red-bg: rgba(239, 68, 68, 0.1);
+    --red-bg: rgba(239, 68, 68, 0.15);
     --red-text: #f87171;
-    --red-border: rgba(239, 68, 68, 0.2);
+    --red-border: rgba(239, 68, 68, 0.25);
 
-    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
-    --shadow-card: 0 0 0 1px var(--border), 0 2px 8px rgba(0, 0, 0, 0.25), 0 12px 40px rgba(0, 0, 0, 0.3);
-    --shadow-btn: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.6);
+    --shadow-btn: 0 2px 4px rgba(31, 188, 142, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2);
 
-    --glow: radial-gradient(ellipse 600px 400px at 50% 0%, rgba(31, 188, 142, 0.06) 0%, transparent 70%);
+    --glow: radial-gradient(circle 600px at 50% 10%, rgba(31, 188, 142, 0.08) 0%, transparent 80%);
 }
 
 /* ═══════════════════════════════════════════
@@ -130,12 +133,13 @@ button, a, input, select, .clickable {
 
 :focus-visible {
     outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline-offset: -2px;
     border-radius: 2px;
 }
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -147,4 +151,5 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    overflow-x: hidden;
 }
