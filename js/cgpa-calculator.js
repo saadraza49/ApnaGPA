@@ -13,18 +13,19 @@ function initCGPACalculator() {
         d.dataset.id = id;
 
         d.innerHTML = `
-            <div class="field">
+            <div class="field" style="grid-column: auto; margin-bottom: 0;">
                 <input type="text" class="control" id="cgpa-n${id}" placeholder="e.g. Semester ${id}" autocomplete="off" aria-label="Semester Name">
             </div>
             <div class="field">
                 <input type="number" class="control" id="cgpa-gpa${id}" placeholder="3.50" min="0" max="4" step="0.01" aria-label="GPA">
             </div>
-            <button class="btn-remove" type="button" aria-label="Remove Semester" title="Remove" data-rm="${id}">
+            <button class="btn-remove" style="margin-top: 0; align-self: center;" type="button" aria-label="Remove Semester" title="Remove" data-rm="${id}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
         `;
-        // For desktop, enforce grid columns directly on row since course-row uses 4 columns but original is different
-        d.style.gridTemplateColumns = window.innerWidth > 480 ? '1fr 110px 44px' : '';
+        // Enforce 1-line layout universally via inline styles to bypass CSS cache on mobile
+        d.style.gridTemplateColumns = 'minmax(0, 1fr) clamp(80px, 22vw, 110px) 44px';
+        d.style.alignItems = 'center';
 
         $cgpaSemesters.appendChild(d);
 

@@ -146,7 +146,12 @@
     }
 
     #cgpa-semesters .course-row {
-        grid-template-columns: minmax(0, 1fr) 44px;
+        grid-template-columns: minmax(0, 1fr) 80px 44px;
+    }
+    
+    #cgpa-semesters .course-row > :first-child {
+        grid-column: auto;
+        margin-bottom: 0;
     }
 }
 

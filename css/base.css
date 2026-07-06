@@ -139,7 +139,7 @@ button, a, input, select, .clickable {
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
@@ -148,8 +148,9 @@ body {
     color: var(--text-1);
     min-height: 100vh;
     line-height: 1.5;
+    padding-top: 72px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
